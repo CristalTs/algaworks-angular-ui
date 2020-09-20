@@ -39,3 +39,8 @@ label {
 .espaco-icones {
   margin: 0 .25em!important;
 }
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
