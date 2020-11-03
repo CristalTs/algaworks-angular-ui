@@ -48,4 +48,22 @@ export class PessoasService {
       .toPromise()
       .then(response => response['content']);
   }
+
+  excluir(codigo: number): Promise<void> {
+    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.delete(`${this.pessoaUrl}/${codigo}`, {headers})
+    .toPromise()
+    .then(() => null);
+
+  }
+
+  mudarStatus(codigo: number, ativo: boolean) {
+    let headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.pessoaUrl}/${codigo}/ativo`, ativo, { headers })
+    .toPromise()
+    .then(() => null);
+  }
 }

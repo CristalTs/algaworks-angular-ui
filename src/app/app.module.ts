@@ -1,16 +1,16 @@
 import { PessoasModule } from './pessoas/pessoas.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
-import { LancamentoService } from './lancamentos/lancamento.service';
-import { MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
 
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [
@@ -23,11 +23,8 @@ import { ToastModule } from 'primeng/toast';
     PessoasModule,
     CoreModule,
     HttpClientModule,
-    ToastModule
   ],
-  providers: [
-    LancamentoService,
-    MessageService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
