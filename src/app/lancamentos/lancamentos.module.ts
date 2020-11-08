@@ -1,3 +1,4 @@
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 import { FormsModule } from '@angular/forms';
 
 import { NgModule } from '@angular/core';
@@ -31,14 +32,12 @@ import { SharedModule } from './../shared/shared.module';
     DropdownModule,
     InputMaskModule,
     CurrencyMaskModule,
+    LancamentosRoutingModule
   ],
   declarations: [
     LancamentoCadastroComponent,
     LancamentosPesquisaComponent
   ],
-  exports: [
-    LancamentoCadastroComponent,
-    LancamentosPesquisaComponent
-  ]
+  exports: []
 })
 export class LancamentosModule { }

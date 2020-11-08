@@ -1,3 +1,4 @@
+import { PessoasRoutingModule } from './pessoas-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
@@ -31,15 +32,13 @@ import { SharedModule } from './../shared/shared.module';
     DropdownModule,
     InputMaskModule,
     CurrencyMaskModule,
+    PessoasRoutingModule
   ],
   declarations: [
     PessoasCadastroComponent,
     PessoasGridComponent,
     PessoasPesquisaComponent
   ],
-  exports: [
-    PessoasCadastroComponent,
-    PessoasPesquisaComponent
-  ]
+  exports: []
 })
 export class PessoasModule { }

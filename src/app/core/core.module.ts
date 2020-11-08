@@ -1,3 +1,5 @@
+import { Title } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 import { ErrorHandlerService } from './error-handler.service';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,7 +14,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   imports: [
     CommonModule,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    RouterModule
   ],
   declarations: [NavbarComponent],
   exports: [
@@ -24,6 +27,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     LancamentoService,
     MessageService,
     ConfirmationService,
+    Title,
     { provide: LOCALE_ID, useValue: 'pt-BR'}
   ]
 })

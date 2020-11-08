@@ -1,3 +1,4 @@
+import { Lancamento } from './../core/model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
@@ -55,6 +56,54 @@ export class LancamentoService {
     return this.http.delete(`${this.lancamentosUrl}/${codigo}`, {headers})
     .toPromise()
     .then(() => null);
+  }
 
+  adicionar(lancamento: Lancamento): Promise<Lancamento> {
+    lancamento = Lancamento.toJson(lancamento);
+    let headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.post<Lancamento>(this.lancamentosUrl, lancamento, {headers})
+    .toPromise();
+  }
+
+  atualizar(lancamento: Lancamento): Promise<Lancamento> {
+    lancamento = Lancamento.toJson(lancamento);
+    let headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.
+    put<Lancamento>(`${this.lancamentosUrl}/${lancamento.codigo}`, lancamento, { headers })
+    .toPromise()
+    .then( response => {
+      const lancamentoAlterado = response as Lancamento;
+      this.converterStringParaDatas([lancamentoAlterado]);
+
+      return lancamentoAlterado;
+    });
+  }
+
+  buscarPorCodigo(codigo: number): Promise<Lancamento> {
+    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.get<Lancamento>(`${this.lancamentosUrl}/${codigo}`, { headers })
+    .toPromise()
+    .then(response => {
+      const lancamento = response as Lancamento;
+      this.converterStringParaDatas([lancamento]);
+
+      return lancamento;
+    });
+  }
+
+  converterStringParaDatas(lancamentos: Lancamento[]) {
+    for (const lancamento of lancamentos) {
+      lancamento.dataVencimento = moment(lancamento.dataVencimento, 'YYYY-MM-DD').toDate();
+
+      if (lancamento.dataPagamento) {
+        lancamento.dataPagamento = moment(lancamento.dataPagamento, 'YYYY-MM-DD').toDate();
+      }
+
+    }
   }
 }

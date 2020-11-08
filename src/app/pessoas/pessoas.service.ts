@@ -1,3 +1,4 @@
+import { Pessoa } from './../core/model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
@@ -65,5 +66,39 @@ export class PessoasService {
     return this.http.put(`${this.pessoaUrl}/${codigo}/ativo`, ativo, { headers })
     .toPromise()
     .then(() => null);
+  }
+
+  adicionar(pessoa: Pessoa): Promise<Pessoa> {
+    // lancamento = Lancamento.toJson(lancamento);
+    // console.log(lancamento);
+    let headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.post<Pessoa>(this.pessoaUrl, pessoa, {headers})
+    .toPromise();
+  }
+
+  atualizar(pessoa: Pessoa): Promise<Pessoa> {
+    let headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+    headers = headers.append('Content-Type', 'application/json');
+
+    return this.http.put<Pessoa>(`${this.pessoaUrl}/${pessoa.codigo}`, pessoa, { headers })
+    .toPromise()
+    .then(response => {
+      const pessoaAlterada = response as Pessoa;
+      return pessoaAlterada;
+    });
+  }
+
+  buscarPorCodigo(codigo: number): Promise<Pessoa> {
+    const headers = new HttpHeaders().append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
+
+    return this.http.get<Pessoa>(`${this.pessoaUrl}/${codigo}`, { headers })
+    .toPromise()
+    .then(response => {
+      const pessoa = response as Pessoa;
+
+      return pessoa;
+    });
   }
 }
