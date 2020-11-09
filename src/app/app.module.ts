@@ -15,6 +15,7 @@ import { CoreModule } from './core/core.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { RouterModule, Routes } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
+import { SegurancaModule } from './seguranca/seguranca.module';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -30,6 +31,7 @@ registerLocaleData(localePt, 'pt-BR');
     PessoasModule,
     CoreModule,
     HttpClientModule,
+    SegurancaModule,
     AppRoutingModule
   ],
   providers: [],

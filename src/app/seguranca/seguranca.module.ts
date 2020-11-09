@@ -1,6 +1,8 @@
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { InputTextModule } from 'primeng/components/inputtext/inputtext';
+import { ButtonModule } from 'primeng/components/button/button';
 
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { LoginFormComponent } from './login-form/login-form.component';
@@ -8,11 +10,13 @@ import { LoginFormComponent } from './login-form/login-form.component';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    InputTextModule,
+    ButtonModule,
+    SegurancaRoutingModule
   ],
   declarations: [
-    LoginFormComponent,
-    SegurancaRoutingModule
+    LoginFormComponent
   ]
 })
 export class SegurancaModule { }

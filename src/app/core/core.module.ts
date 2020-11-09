@@ -1,3 +1,4 @@
+import { AuthService } from '../seguranca/auth.service';
 import { Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ErrorHandlerService } from './error-handler.service';
@@ -28,6 +29,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     MessageService,
     ConfirmationService,
     Title,
+    AuthService,
     { provide: LOCALE_ID, useValue: 'pt-BR'}
   ]
 })
